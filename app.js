@@ -15,8 +15,7 @@ displayWeather(){
 }
 
 function celsiusToFahrenheit(temperature){
-    return (temperature * 9/5) + 32;
-
+    return (temperature * 9/5) + 32; 
 }
 
 tempElement.addEventListener("click" function(){
