@@ -28,12 +28,16 @@ window.addEventListener("load", () => {
                     locationTimezone.textContent = data.timezone;
                     // set icons
                     setIcons(icon, document.querySelector(".icon"));
+                    // Formula celsius/farenheit
+                    let celsius = (temperature - 32) * (5 / 9 );
                     // Celsius/Farenheit
                     temperatureSection.addEventListener("click", () => {
                         if (temperatureSpan.textContent === "F"){
                             temperatureSpan.textContent = "C";
+                            temperatureDegree.textContent = Math.floor(celsius);
                         }else{
                             temperatureSpan.textContent = "F";
+                            temperatureDegree.textContent = temperature;
                         }
                     });
 
