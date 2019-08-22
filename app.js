@@ -19,8 +19,16 @@ window.addEventListener("load", () => {
                 })
                 .then(data => {
                     console.log(data); //  <--getting data from location
-                    const {temperature, summary} = data.currently;
+                    const {temperature, summary, icon} = data.currently;
+                    // Set DOM elements from the API 
+                    temperatureDegree.textContent = temperature;
+                    temperatureDescription.textContent = summary;
+                    locationTimezone.textContent = data.timezone;
                 });
         });
+    }
+    function setIcons(icon, iconID){
+         const icons = new icons({color:"white"});
+         const currentIcon = icon.replace(/-/g, "_"); //<-- regex to change - from API to _
     }
 });
