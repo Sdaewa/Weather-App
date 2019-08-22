@@ -4,13 +4,15 @@ window.addEventListener("load", () => {
     let temperatureDescription = document.querySelector(".temperature-description");
     let temperatureDegree = document.querySelector(".temperature-degree");
     let locationTimezone = document.querySelector(".location-timezone");
+    let temperatureSection =  document.querySelector(".temperature");
+    let temperatureSpan = document.querySelector(".temperature span"); 
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
             
-            const proxy = "https://cors-anywhere.herokuapp.com/";
+            const proxy = "https://cors-anywhere.herokuapp.com/"; //<-- CORS to bypass Localhost and retrieve data from API
             const api = `${proxy}https://api.darksky.net/forecast/9f0cd7ea5ab0a3303c9856c5c630924d/${lat}, ${long}`;
 
             fetch(api)
@@ -25,7 +27,16 @@ window.addEventListener("load", () => {
                     temperatureDescription.textContent = summary;
                     locationTimezone.textContent = data.timezone;
                     // set icons
-                    setIcons(icons, document.querySelector(".icon"));
+                    setIcons(icon, document.querySelector(".icon"));
+                    // Celsius/Farenheit
+                    temperatureSection.addEventListener("click", () => {
+                        if (temperatureSpan.textContent === "F"){
+                            temperatureSpan.textContent = "C";
+                        }else{
+                            temperatureSpan.textContent = "F";
+                        }
+                    });
+
                 });
         });
     }
