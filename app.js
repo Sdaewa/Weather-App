@@ -24,11 +24,15 @@ window.addEventListener("load", () => {
                     temperatureDegree.textContent = temperature;
                     temperatureDescription.textContent = summary;
                     locationTimezone.textContent = data.timezone;
+                    // set icons
+                    setIcons(icons, iconID)
                 });
         });
     }
     function setIcons(icon, iconID){
          const icons = new icons({color:"white"});
-         const currentIcon = icon.replace(/-/g, "_"); //<-- regex to change - from API to _
+         const currentIcon = icon.replace(/-/g, "_").toUpperCase(); //<-- regex to change - from API to _
+         icons.play();
+         return icons.set(iconID, Icons[currentIcon]);
     }
 });
